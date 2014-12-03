@@ -682,7 +682,7 @@ It listens to <code>Backbone.Model#sync</code> and <code>Backbone.Collection#syn
             <div class="content"><div class='highlight'><pre>    startCollectionListeners: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(collection, key)</span> </span>{
       <span class="hljs-keyword">if</span> (!collection) collection = <span class="hljs-keyword">this</span>.collection;
       <span class="hljs-keyword">if</span> (collection) {
-        <span class="hljs-keyword">if</span> (collection.models)
+        <span class="hljs-keyword">if</span> (_.isArray(collection.models))
           <span class="hljs-keyword">this</span>
             .listenTo(collection, <span class="hljs-string">'add remove change sort reset'</span>,
               _.partial(<span class="hljs-keyword">this</span>.setPropsBackbone, collection, key, <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>))
@@ -712,7 +712,7 @@ It listens to <code>Backbone.Model#sync</code> and <code>Backbone.Collection#syn
             <div class="content"><div class='highlight'><pre>    startModelListeners: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(model, key)</span> </span>{
       <span class="hljs-keyword">if</span> (!model) model = <span class="hljs-keyword">this</span>.model;
       <span class="hljs-keyword">if</span> (model) {
-        <span class="hljs-keyword">if</span> (model.attributes)
+        <span class="hljs-keyword">if</span> (_.isObject(model.attributes))
           <span class="hljs-keyword">this</span>
             .listenTo(model, <span class="hljs-string">'change'</span>,
               _.partial(<span class="hljs-keyword">this</span>.setPropsBackbone, model, key, <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>))

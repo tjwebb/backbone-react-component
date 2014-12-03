@@ -250,7 +250,7 @@
     startCollectionListeners: function (collection, key) {
       if (!collection) collection = this.collection;
       if (collection) {
-        if (collection.models)
+        if (_.isArray(collection.models))
           this
             .listenTo(collection, 'add remove change sort reset',
               _.partial(this.setPropsBackbone, collection, key, void 0))
@@ -267,7 +267,7 @@
     startModelListeners: function (model, key) {
       if (!model) model = this.model;
       if (model) {
-        if (model.attributes)
+        if (_.isObject(model.attributes))
           this
             .listenTo(model, 'change',
               _.partial(this.setPropsBackbone, model, key, void 0))
